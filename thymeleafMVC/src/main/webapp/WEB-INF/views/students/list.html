@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/students/layout :: css">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Student management</h1>
+<a th:href="@{/students/create}">Create new student</a>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Age</th>
+        <th>Edit</th>
+    </tr>
+    <tr th:each="st:${listStudent}">
+        <td th:text="${st.id}"></td>
+        <td><a th:href="@{/students/{id}/(id=${st.id})}" th:text="${st.name}"></a></td>
+        <td th:text="${st.address}"></td>
+        <td th:text="${st.age}"></td>
+        <td>
+            <a th:href="@{/students/edit/{id}/(id=${st.id})}">
+                <button class="edit">
+                    edit
+                </button>
+            </a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
